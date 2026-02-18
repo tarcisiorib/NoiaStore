@@ -6,7 +6,7 @@ using WebApp.Models;
 
 namespace WebApp.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService : Service, IAuthService
     {
         private readonly HttpClient _httpClient;
 
@@ -25,6 +25,14 @@ namespace WebApp.Services
             var response = await _httpClient.PostAsync("https://localhost:44354/api/account/login", loginContent);
 
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+            if (!ProcessResponseErrors(response))
+            {
+                return new User
+                {
+                    ResponseResult = JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
 
             return JsonSerializer.Deserialize<User>(await response.Content.ReadAsStringAsync(), options);
         }

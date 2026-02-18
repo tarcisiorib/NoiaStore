@@ -11,7 +11,7 @@ using WebApp.Services;
 
 namespace WebApp.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : MainController
     {
         private readonly IAuthService _authService;
 
@@ -33,11 +33,12 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid) return View(registerUser);
 
-            var result = await _authService.Register(registerUser);
+            var response = await _authService.Register(registerUser);
 
-            await LogIn(result);
+            if (HasResponseErrors(response.ResponseResult))
+                return View(registerUser);
 
-            //if (false) return View(registerUser);
+            await LogIn(response);
 
             return RedirectToAction("Index", "Home");
         }
@@ -55,11 +56,12 @@ namespace WebApp.Controllers
         {
             if (!ModelState.IsValid) return View(loginUser);
 
-            var result = await _authService.Login(loginUser);
+            var response = await _authService.Login(loginUser);
 
-            await LogIn(result);
+            if (HasResponseErrors(response.ResponseResult))
+                return View(loginUser);
 
-            //if (false) return View(loginUser);
+            await LogIn(response);
 
             return RedirectToAction("Index", "Home");
         }
@@ -68,6 +70,7 @@ namespace WebApp.Controllers
         [Route("logout")]
         public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
 

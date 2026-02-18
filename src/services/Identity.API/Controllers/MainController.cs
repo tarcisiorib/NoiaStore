@@ -17,7 +17,8 @@ namespace Identity.API.Controllers
             {
                 return Ok(result);
             }
-            return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
+
+            return ValidationProblem(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
                 { "Messages", Errors.ToArray() }
             }));
