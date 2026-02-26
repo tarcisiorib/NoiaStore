@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApp.Extensions;
 
 namespace WebApp.Configurations
 {
@@ -22,7 +23,8 @@ namespace WebApp.Configurations
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error/500");
+                app.UseStatusCodePagesWithRedirects("/error/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -31,6 +33,8 @@ namespace WebApp.Configurations
             app.UseRouting();
 
             app.UseAuthConfiguration();
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
