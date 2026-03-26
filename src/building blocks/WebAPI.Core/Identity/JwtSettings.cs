@@ -1,4 +1,4 @@
-﻿namespace Identity.API.Extensions
+﻿namespace WebAPI.Core.Identity
 {
     public class JwtSettings
     {

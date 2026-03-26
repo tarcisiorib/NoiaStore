@@ -1,5 +1,4 @@
-﻿using Identity.API.Extensions;
-using Identity.API.Models;
+﻿using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Core.Identity;
 
 namespace Identity.API.Controllers
 {

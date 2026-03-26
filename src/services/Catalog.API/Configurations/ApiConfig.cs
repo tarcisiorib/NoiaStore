@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAPI.Core.Identity;
 
 namespace Catalog.API.Configurations
 {
@@ -43,7 +44,7 @@ namespace Catalog.API.Configurations
 
             app.UseCors("Total");
 
-            app.UseAuthorization();
+            app.UseJwtConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

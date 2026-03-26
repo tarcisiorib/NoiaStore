@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAPI.Core.Identity;
 
 namespace Identity.API.Configurations
 {
@@ -29,7 +30,8 @@ namespace Identity.API.Configurations
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseIdentityConfiguration();
+
+            app.UseJwtConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
