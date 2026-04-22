@@ -1,19 +1,23 @@
-﻿using Catalog.API.Data;
+﻿using Clients.API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using WebAPI.Core.Identity;
 
-namespace Catalog.API.Configurations
+namespace Clients.API.Configuration
 {
     public static class ApiConfig
     {
         public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<CatalogContext>(options =>
+            services.AddDbContext<ClientsContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
@@ -22,10 +26,10 @@ namespace Catalog.API.Configurations
             {
                 options.AddPolicy("Total",
                     builder =>
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
             });
         }
 
@@ -37,8 +41,6 @@ namespace Catalog.API.Configurations
             }
 
             app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
 
             app.UseRouting();
 

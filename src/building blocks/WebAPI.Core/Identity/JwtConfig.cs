@@ -37,7 +37,7 @@ namespace WebAPI.Core.Identity
             });
         }
 
-        public static void UseJwtConfiguration(this IApplicationBuilder app)
+        public static void UseAuthConfiguration(this IApplicationBuilder app)
         {
             app.UseAuthentication();
             app.UseAuthorization();

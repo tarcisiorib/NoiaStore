@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{DE2318
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{DE2455A2-ACB6-4795-85DD-9D4C8E3ECEEC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{6B2D5AEB-7A74-4B50-8CDC-95F70E4D8340}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{6B2D5AEB-7A74-4B50-8CDC-95F70E4D8340}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{8F0F25FF-6D07-46D2-A024-73879CB4BFA4}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "src\services\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "src\services\Catalog.API\Catalog.API.csproj", "{7E2CC4E1-CAB4-418B-87BF-2C9230F3CFE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client.API", "src\services\Client.API\Client.API.csproj", "{5EE9DFED-A7DF-4D24-82E5-E161DB049578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clients.API", "src\services\Client.API\Clients.API.csproj", "{5EE9DFED-A7DF-4D24-82E5-E161DB049578}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\services\Identity.API\Identity.API.csproj", "{CB6AE714-69DB-4347-99CE-DCE388F750AC}"
 EndProject
@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\web\WebApp\We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2975E4FB-F878-4D31-B786-12D511379EEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Core", "src\building blocks\WebAPI.Core\WebAPI.Core.csproj", "{F6583026-9D4B-49B6-A080-EFEC89A1CFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI.Core", "src\building blocks\WebAPI.Core\WebAPI.Core.csproj", "{F6583026-9D4B-49B6-A080-EFEC89A1CFB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

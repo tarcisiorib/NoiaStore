@@ -31,7 +31,7 @@ namespace Identity.API.Configurations
 
             app.UseRouting();
 
-            app.UseJwtConfiguration();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

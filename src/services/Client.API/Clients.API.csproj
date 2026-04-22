@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>df1964a3-61f7-4280-813f-fcbaaee2a112</UserSecretsId>
+    <UserSecretsId>020873e5-bbee-4b2b-a10f-335de552fe4c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="3.1.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.32" />
@@ -20,12 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\building blocks\Core\Core.csproj" />
-    <ProjectReference Include="..\..\building blocks\WebAPI.Core\WebAPI.Core.csproj" />
+    <Folder Include="Application\Events\" />
+    <Folder Include="Application\Queries\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\..\building blocks\Core\Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\WebAPI.Core\WebAPI.Core.csproj" />
   </ItemGroup>
 
 
