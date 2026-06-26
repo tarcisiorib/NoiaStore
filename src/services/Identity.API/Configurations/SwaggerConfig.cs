@@ -14,7 +14,7 @@ namespace Identity.API.Configurations
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Noia Store Identity API",
-                    Description = "Gerenciamento de conta da Noia Store",
+                    Description = "Account management",
                     Contact = new OpenApiContact { Name = "Tarcísio Ribeiro", Email = "tarcisiorib@noiastore.com.br" },
                     License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/license/MIT") }
                 });

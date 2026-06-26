@@ -1,4 +1,6 @@
-﻿using Identity.API.Models;
+﻿using Core.Messages.Integration;
+using Identity.API.Models;
+using MessageBus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Core.Controllers;
 using WebAPI.Core.Identity;
 
 namespace Identity.API.Controllers
@@ -21,17 +24,20 @@ namespace Identity.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtSettings _jwtSettings;
 
+        private readonly IMessageBus _bus;
+
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<JwtSettings> jwtSettings)
+                              IOptions<JwtSettings> jwtSettings, IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
+            _bus = bus;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult> Register(RegisterViewModel registerViewModel)
+        public async Task<ActionResult> Register(RegisterUserViewModel registerViewModel)
         {
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
@@ -42,6 +48,14 @@ namespace Identity.API.Controllers
 
             if (result.Succeeded)
             {
+                var clientResult = await RegisterClient(registerViewModel);
+
+                if (!clientResult.ValidationResult.IsValid)
+                {
+                    await _userManager.DeleteAsync(user);
+                    return CustomResponse(clientResult.ValidationResult);
+                }
+
                 return CustomResponse(await GetJwtToken(registerViewModel.Email));
             }
 
@@ -140,6 +154,23 @@ namespace Identity.API.Controllers
                     Claims = claims.Select(c => new UserClaim { Type = c.Type, Value = c.Value })
                 }
             };
+        }
+
+        private async Task<ResponseMessage> RegisterClient(RegisterUserViewModel registerUserViewModel)
+        {
+            var user = await _userManager.FindByEmailAsync(registerUserViewModel.Email);
+            var registeredUser = new UserRegisteredIntegrationEvent(
+                Guid.Parse(user.Id), registerUserViewModel.Name, registerUserViewModel.Email, registerUserViewModel.Cpf);
+
+            try
+            {
+                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(registeredUser);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(user);
+                throw;
+            }
         }
     }
 }

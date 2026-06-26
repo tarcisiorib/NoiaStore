@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Identity.API.Controllers
+namespace WebAPI.Core.Controllers
 {
     [ApiController]
     public abstract class MainController : Controller
@@ -28,6 +27,16 @@ namespace Identity.API.Controllers
         {
             var errors = modelState.Values.SelectMany(e => e.Errors);
             foreach (var error in errors)
+            {
+                AddProcessError(error.ErrorMessage);
+            }
+
+            return CustomResponse();
+        }
+
+        protected ActionResult CustomResponse(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
             {
                 AddProcessError(error.ErrorMessage);
             }

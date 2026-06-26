@@ -21,13 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Events\" />
     <Folder Include="Application\Queries\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\Core\Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\MessageBus\MessageBus.csproj" />
     <ProjectReference Include="..\..\building blocks\WebAPI.Core\WebAPI.Core.csproj" />
   </ItemGroup>
 

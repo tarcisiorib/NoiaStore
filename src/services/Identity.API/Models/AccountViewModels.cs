@@ -3,8 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Identity.API.Models
 {
-    public class RegisterViewModel
+    public class RegisterUserViewModel
     {
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public string Cpf { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }

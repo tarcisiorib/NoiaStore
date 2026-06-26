@@ -1,4 +1,5 @@
-﻿using Clients.API.Models;
+﻿using Clients.API.Application.Events;
+using Clients.API.Models;
 using Core.Messages;
 using FluentValidation.Results;
 using MediatR;
@@ -30,6 +31,9 @@ namespace Clients.API.Application.Commands
                 AddError("CPF already taken");
                 return ValidationResult;
             }
+
+            _clientRepository.Add(client);
+            client.AddEvent(new ClientRegisteredEvent(message.Id, message.Name, message.Email, message.Cpf));
 
             return await PersistData(_clientRepository.UnitOfWork);
         }

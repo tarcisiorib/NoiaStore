@@ -1,12 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using WebApp.Extensions;
 
 namespace WebApp.Models
 {
     public class RegisterUser
     {
         [Required]
+        [DisplayName("Full name")]
+        public string Name { get; set; }
+        [Required]
+        [DisplayName("CPF")]
+        [Cpf]
+        public string Cpf { get; set; }
+        [Required]
         [EmailAddress]
+        [DisplayName("E-mail")]
         public string Email { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -14,6 +24,7 @@ namespace WebApp.Models
         public string Password { get; set; }
         [Compare("Password")]
         [DataType(DataType.Password)]
+        [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
     }
 

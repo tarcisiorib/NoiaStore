@@ -13,8 +13,8 @@ namespace Catalog.API.Configurations
             {
                 c.SwaggerDoc("v1", new OpenApiInfo() 
                 {
-                    Title = "NoisStore Catalog API",
-                    Description = "This API serves the products availables",
+                    Title = "Noia Store Catalog API",
+                    Description = "Availables products",
                     Contact = new OpenApiContact() { Name = "Tarcísio Ribeiro", Email = "tarcisiorib@gmail.com" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/") }
                 });

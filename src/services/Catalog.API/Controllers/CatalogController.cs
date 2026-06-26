@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebAPI.Core.Controllers;
 using static WebAPI.Core.Identity.CustomAuthorization;
 
 namespace Catalog.API.Controllers
 {
-    [ApiController]
     [Authorize]
-    public class CatalogController : ControllerBase
+    public class CatalogController : MainController
     {
         private readonly IProductRepository _productRepository;
 

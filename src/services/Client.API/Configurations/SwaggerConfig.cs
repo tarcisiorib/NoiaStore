@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 
-namespace Clients.API.Configuration
+namespace Clients.API.Configurations
 {
     public static class SwaggerConfig
     {
@@ -13,8 +13,8 @@ namespace Clients.API.Configuration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "NoiaStore Clients API",
-                    Description = "This API is responsible for client management",
+                    Title = "Noia Store Clients API",
+                    Description = "Client management",
                     Contact = new OpenApiContact() { Name = "Tarcísio Ribeiro", Email = "contato@noia.com.br" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
                 });

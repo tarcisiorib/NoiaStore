@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Extensions;
 using WebApp.Services;
@@ -10,6 +11,7 @@ namespace WebApp.Configurations
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
 
             services.AddHttpClient<IAuthService, AuthService>();
